@@ -62,6 +62,7 @@ public class LoadingActivity extends Activity  {
     //1、首先声明一个数组permissions，将需要的权限都放在里面
     String permissions[] = {
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.READ_PHONE_STATE};
     //2、创建一个mPermissionList，逐个判断哪些权限未授予，未授予的权限存储到mPerrrmissionList中
     List<String> mPermissionList = new ArrayList<String>();
