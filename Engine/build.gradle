@@ -52,7 +52,7 @@ android {
         abortOnError false
     }
     defaultConfig {
-        applicationId 'org.zywx.wbpalmstar.widgetone.uex'
+//        applicationId 'org.zywx.wbpalmstar.widgetone.uex'
         minSdkVersion 14
         targetSdkVersion 28 //
         multiDexEnabled true
