@@ -215,7 +215,13 @@ public class EUExManager {
         BDebug.e("plugin", pluginName, "not exist...");
         return getReturn(204, "plugin " + pluginName + " not exist...");
     }
-
+    private String getParams(String[] params) {
+        StringBuffer stringBuffer=new StringBuffer();
+        for (String param:params){
+            stringBuffer.append("\n参数类型:String"+"\n参数值:"+param+"\n");
+        }
+        return stringBuffer.toString();
+    }
 
     public String callMethod(final EUExBase plugin, final String methodName, final String[] params) {
         if (plugin.mDestroyed) {
