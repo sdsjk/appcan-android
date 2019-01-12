@@ -60,8 +60,8 @@ public class EUExScript {
                 "      var permanent = params.shift();" +
                 "      this.queue[id].apply(this, params);" +
                 "      if (!permanent) {" +
-                 "        delete this.queue[id];" +
-                 "     }" +
+                "        delete this.queue[id];" +
+                "     }" +
                 "    }" +
                 "  };"+
                 "function fo(){" +
@@ -76,16 +76,20 @@ public class EUExScript {
                 "if (type == \"function\") {" +
                 "          var callbackID = uexCallback.queue.length;" +
                 "          uexCallback.queue[callbackID] = arg;" +
-                "          args[i] = callbackID" +
+                "          args[i] = ''+callbackID" +
                 "        }"+
                 "aTypes[aTypes.length] = type;" +
                 "}" +
-                "var result =JSON.parse(prompt(" + JS_APPCAN_ONJSPARSE_HEADER +
-                "JSON.stringify({uexName:uexName,method:method,args:args,types:aTypes})));" +
-                " if (result.code != 200) {" +
-                "   console.log( \"method call error, code:\" + result.code + \", message: \" + result.result  );" +
-                "}"+
-                "  var content = result.result; " +
+//                "var result =JSON.parse(prompt(" + JS_APPCAN_ONJSPARSE_HEADER +
+//                "JSON.stringify({uexName:uexName,method:method,args:args,types:aTypes})));" +
+//                " if (result.code != 200) {" +
+//                "   console.log( \"method call error, code:\" + result.code + \", message: \" + result.result  );" +
+//                "}"+
+//                "var temp = uexDispatcherNative.dispatch(uexName, method, args);console.log(temp);"+
+//                "var result = JSON.parse(temp);"+
+                "var result = uexDispatcherNative.dispatch(uexName, method, args); "+
+                " var finalResult =JSON.parse(result) ; "+
+                "  var content = finalResult.result; " +
                 "   if (content&&content.funcMaps) { " +
                 "     for (var name in content.funcMaps) { " +
                 "      (function(name){" +
@@ -116,6 +120,8 @@ public class EUExScript {
                 "var b = a[i];" +
                 "if(b instanceof Array || typeof(b)=='number' || typeof(b)=='boolean'){" +
                 "t[i]=b.toString();" +
+                "}else if(typeof(b)=='object'){" +
+                "t[i]=JSON.stringify(b)" +
                 "}else{" +
                 "t[i]=b;" +
                 "}" +
@@ -149,7 +155,6 @@ public class EUExScript {
                 // Widget
                 "window.uexWidget={"
                 + "startWidget:function(){return uexDispatcher.dispatch('uexWidget','startWidget',jo(arguments));},"
-                + "startWidgetWithConfig:function(){return uexDispatcher.dispatch('uexWidget','startWidgetWithConfig',jo(arguments));},"
                 + "startWidgetWithPath:function(){uexDispatcher.dispatch('uexWidget','startWidgetWithPath',jo(arguments));},"
                 + "finishWidget:function(){uexDispatcher.dispatch('uexWidget','finishWidget',jo(arguments));},"
                 + "removeWidget:function(){return uexDispatcher.dispatch('uexWidget','removeWidget',jo(arguments));},"
@@ -194,9 +199,6 @@ public class EUExScript {
                 + "actionSheet:function(){uexDispatcher.dispatch('uexWindow','actionSheet',jo(arguments));},"
                 + "setReportKey:function(){uexDispatcher.dispatch('uexWindow','setReportKey',jo(arguments));},"
                 + "open:function(){uexDispatcher.dispatch('uexWindow','open',jo(arguments));},"
-                + "openWithOptions:function(){uexDispatcher.dispatch('uexWindow','openWithOptions',jo(arguments));},"
-                + "setWindowOptions:function(){uexDispatcher.dispatch('uexWindow','setWindowOptions',jo(arguments));},"
-                + "setMpWindowStatus:function(){uexDispatcher.dispatch('uexWindow','setMpWindowStatus',jo(arguments));},"
                 + "setWindowFrame:function(){uexDispatcher.dispatch('uexWindow','setWindowFrame',jo(arguments));},"
                 + "close:function(){uexDispatcher.dispatch('uexWindow','close',jo(arguments));},"
                 + "openSlibing:function(){uexDispatcher.dispatch('uexWindow','openSlibing',jo(arguments));},"
