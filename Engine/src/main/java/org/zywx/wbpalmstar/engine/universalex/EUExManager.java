@@ -148,14 +148,6 @@ public class EUExManager {
         }
     }
 
-    private String getParams(String[] params) {
-        StringBuffer stringBuffer=new StringBuffer();
-        for (String param:params){
-            stringBuffer.append("\n参数类型:String"+"\n参数值:"+param+"\n");
-        }
-        return stringBuffer.toString();
-    }
-
     public Map<String, ThirdPluginObject> getPlugins() {
         ThirdPluginMgr tpm = AppCan.getInstance().getThirdPlugins();
         return tpm.getPlugins();
