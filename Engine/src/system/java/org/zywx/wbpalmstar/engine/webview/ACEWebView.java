@@ -22,7 +22,6 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.util.Log;
 import android.view.View;
 import android.webkit.DownloadListener;
 import android.webkit.WebView;
@@ -68,9 +67,7 @@ public class ACEWebView extends WebView implements DownloadListener {
                 setWebViewClient(mEXWebViewClient = new CBrowserWindow());
                 setWebChromeClient(new CBrowserMainFrame(eBrowserView.getContext()));
             }
-
         } else {
-
             if (mBaSetting == null) {
                 mBaSetting = new EBrowserSetting7(eBrowserView);
                 mBaSetting.initBaseSetting(mWebApp);
