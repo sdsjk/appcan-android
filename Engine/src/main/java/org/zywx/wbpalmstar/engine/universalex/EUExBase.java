@@ -777,6 +777,7 @@ public abstract class EUExBase {
         EBrowserWindow curWind = mBrwView.getBrowserWindow();
         if (null == curWind) {
             return;
+
         }
         curWind.evaluatePopoverScript(mBrwView, inWindowName, inPopName,
                 SCRIPT_HEADER + inScript);

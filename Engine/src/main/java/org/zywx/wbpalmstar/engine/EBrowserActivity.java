@@ -953,31 +953,11 @@ public final class EBrowserActivity extends BaseActivity {
             mActivityCallback = callack;
 //            mCallbackRuning = true;
         }
-
         //检查权限是否授权
         int checkCallPhonePermisssion = ContextCompat.checkSelfPermission(this, perssions);
-
         if(checkCallPhonePermisssion!= PackageManager.PERMISSION_GRANTED){
             //判断是不是第一次申请权限，如果是第一次申请权限则返回fasle，如果之前拒绝再次申请则返回true
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,perssions)) {
-                new AlertDialog.Builder(EBrowserActivity.this)
-                        .setTitle("提示")
-                        .setMessage(message)
-                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                ActivityCompat.requestPermissions(EBrowserActivity.this, new String[]{perssions}, requestCode);
-                            }
-                        })
-                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-                            }
-                        }).show();
-            } else {
-                ActivityCompat.requestPermissions(EBrowserActivity.this, new String[]{perssions}, requestCode);
-            }
+            ActivityCompat.requestPermissions(EBrowserActivity.this, new String[]{perssions}, requestCode);
         }else {
             mActivityCallback.onRequestPermissionResult(requestCode, new String[]{perssions}, new int[]{0});
         }

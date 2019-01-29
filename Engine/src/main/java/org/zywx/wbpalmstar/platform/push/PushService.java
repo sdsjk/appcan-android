@@ -81,13 +81,13 @@ public class PushService extends Service implements PushDataCallback {
 
     private void start() {
         EUExUtil.init(this.getApplicationContext());
-        String appKey = EUExUtil.getString("appkey");
-        appKey = BUtility.decodeStr(appKey);
-        softToken = BUtility.getSoftToken(this, appKey);
-        preferences = this.getSharedPreferences(PushReportConstants.SP_APP,
-                Context.MODE_PRIVATE);
-        url_push = BUtility.getPushHost(this);
-        if (TextUtils.isEmpty(url_push)) {
+            String appKey = EUExUtil.getString("appkey");
+            appKey = BUtility.decodeStr(appKey);
+            softToken = BUtility.getSoftToken(this, appKey);
+            preferences = this.getSharedPreferences(PushReportConstants.SP_APP,
+                    Context.MODE_PRIVATE);
+            url_push = BUtility.getPushHost(this);
+            if (TextUtils.isEmpty(url_push)) {
             Log.w("PushService", "push_host is empty");
             return;
         }
