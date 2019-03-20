@@ -23,6 +23,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.view.View;
+import android.webkit.CookieManager;
 import android.webkit.DownloadListener;
 import android.webkit.WebView;
 
@@ -68,6 +69,9 @@ public class ACEWebView extends WebView implements DownloadListener {
                 setWebChromeClient(new CBrowserMainFrame(eBrowserView.getContext()));
             }
         } else {
+            if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP ) {
+                CookieManager.getInstance().setAcceptThirdPartyCookies(this,true);
+            }
             if (mBaSetting == null) {
                 mBaSetting = new EBrowserSetting7(eBrowserView);
                 mBaSetting.initBaseSetting(mWebApp);
